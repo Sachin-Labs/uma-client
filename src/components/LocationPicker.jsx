@@ -210,10 +210,10 @@ const LocationPicker = ({
                                 top: '100%',
                                 left: 0,
                                 right: 0,
-                                background: 'var(--bg-secondary)',
-                                border: '1px solid var(--border-color)',
+                                background: 'var(--t-surface)',
+                                border: '1px solid var(--t-line)',
                                 borderRadius: '0 0 8px 8px',
-                                boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
+                                boxShadow: '0 4px 12px rgba(0,0,0,0.15)',
                                 zIndex: 1000,
                                 overflow: 'hidden',
                             }}>
@@ -224,17 +224,17 @@ const LocationPicker = ({
                                         style={{
                                             padding: '10px 14px',
                                             cursor: 'pointer',
-                                            borderBottom: '1px solid var(--border-color)',
+                                            borderBottom: '1px solid var(--t-line)',
                                             fontSize: '0.875rem',
-                                            color: 'var(--text-primary)',
+                                            color: 'var(--t-bright)',
                                             transition: 'background 0.15s',
                                         }}
-                                        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--bg-glass-hover)'}
+                                        onMouseEnter={(e) => e.currentTarget.style.background = 'var(--t-raised)'}
                                         onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                                     >
                                         <span style={{ marginRight: '8px' }}>📍</span>
                                         <strong>{s.structured_formatting?.main_text}</strong>
-                                        <span style={{ color: 'var(--text-muted)', marginLeft: '6px' }}>
+                                        <span style={{ color: 'var(--t-subtle)', marginLeft: '6px' }}>
                                             {s.structured_formatting?.secondary_text}
                                         </span>
                                     </div>
