@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import ThemeToggle from '../../components/ThemeToggle';
-import { Fingerprint } from 'lucide-react';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -33,10 +32,10 @@ const Login = () => {
             </div>
             <div className="auth-card card max-w-md w-full animate-fade-in">
                 <div className="auth-header mb-8 text-center flex flex-col items-center">
-                    <div className="w-12 h-12 bg-accent rounded-2xl flex items-center justify-center text-accent-fg mb-4">
-                        <Fingerprint size={28} />
-                    </div>
-                    <h1 className="auth-logo text-xl font-bold tracking-tighter text-bright mb-2">UMA</h1>
+                    <Link to="/" aria-label="SINA People home">
+                        <img src="/sina-people.svg" alt="SINA People" className="w-12 h-12 rounded-2xl mb-4 hover:scale-105 transition-transform" />
+                    </Link>
+                    <h1 className="auth-logo text-xl font-bold tracking-tighter text-bright mb-2">SINA People</h1>
                     <p className="auth-subtitle text-[15px] text-subtle">Sign in to your account</p>
                 </div>
                 {error && <div className="error-msg">{error}</div>}
@@ -54,6 +53,11 @@ const Login = () => {
                     <button type="submit" className="btn btn-primary btn-block btn-lg" disabled={loading}>
                         {loading ? 'Signing in...' : 'Sign In'}
                     </button>
+                    <div style={{ textAlign: 'center', marginTop: '0.75rem' }}>
+                        <Link to="/forgot-password" className="text-xs text-subtle font-medium hover:text-accent hover:underline">
+                            Forgot password?
+                        </Link>
+                    </div>
                 </form>
                 <div className="auth-footer mt-6 text-center text-sm text-subtle">
                     Don't have an account? <Link to="/register" className="text-accent font-semibold hover:underline">Register your organisation</Link>

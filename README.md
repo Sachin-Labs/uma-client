@@ -1,11 +1,11 @@
-# UMA Frontend — User Management & Attendance System
+# SINA People Frontend — User Management & Attendance System
 
-UMA (User Management & Attendance System) is a modern, production-grade **Multi-Tenant SaaS** platform designed to streamline workforce management. This repository contains the React-based frontend application.
+SINA People (User Management & Attendance System) is a modern, production-grade **Multi-Tenant SaaS** platform designed to streamline workforce management. This repository contains the React-based frontend application.
 
 ---
 
 ## 🚀 Live Demo
-- **Live URL:** [https://uma-client.vercel.app](https://uma-client.vercel.app) *(Replace with your URL)*
+- **Live URL:** [https://sina-people-client.vercel.app](https://sina-people-client.vercel.app) *(Replace with your URL)*
 
 ---
 

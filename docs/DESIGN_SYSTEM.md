@@ -1,9 +1,9 @@
-# UMA Design System
+# SINA People Design System
 
-Welcome, **UI/UX Designers**! This document outlines the aesthetic foundations of the UMA project. 
+Welcome, **UI/UX Designers**! This document outlines the aesthetic foundations of the SINA People project. 
 
 ## Design Philosophy
-UMA is designed to feel **Premium, Modern, and Reliable**. We use a minimal interface with high-contrast elements, subtle micro-interactions, and a "Glassmorphism" aesthetic for overlays.
+SINA People is designed to feel **Premium, Modern, and Reliable**. We use a minimal interface with high-contrast elements, subtle micro-interactions, and a "Glassmorphism" aesthetic for overlays.
 
 ## Color Palette
 
@@ -50,4 +50,4 @@ We exclusively use **Lucide-React**. Icons should be:
 
 ---
 **Designer's Tip:**
-When adding new pages, prioritize "Whitespace." UMA should feel airy and focused on one task at a time.
+When adding new pages, prioritize "Whitespace." SINA People should feel airy and focused on one task at a time.

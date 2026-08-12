@@ -1,6 +1,6 @@
-# UMA Client: Guided Issues 🚀
+# SINA People Client: Guided Issues 🚀
 
-This is a reference list of issues for the UMA Frontend. Use these to find a task that matches your skill level.
+This is a reference list of issues for the SINA People Frontend. Use these to find a task that matches your skill level.
 
 ## 🟢 Beginner (Good First Issues)
 1. **[UI] Add a "Back to Top" button**: On long attendance logs or user lists, implement a smooth-scroll "Back to Top" button.
@@ -21,7 +21,7 @@ This is a reference list of issues for the UMA Frontend. Use these to find a tas
 12. **[Feature] Drag & Drop**: Allow HR managers to reorder Sidebar items via drag-and-drop.
 13. **[Architecture] custom `useApi` hook**: Refactor API calls to use a custom `useApi` hook that handles loading and error states globally.
 14. **[PWA] Service Worker**: Implement a basic service worker to cache the UI assets for faster repeat loads.
-15. **[PWA] Install Prompt**: Add a custom install banner for Chrome/Edge to encourage users to install UMA as an app.
+15. **[PWA] Install Prompt**: Add a custom install banner for Chrome/Edge to encourage users to install SINA People as an app.
 
 ---
 **How to start:**

@@ -134,10 +134,10 @@ const ManageTeams = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-6">
                 <div className="space-y-1">
                     <h1 className="text-xl font-bold tracking-tight text-foreground">Teams</h1>
-                    <p className="text-[15px] text-secondary font-medium">Create and manage your office teams and their locations</p>
+                    <p className="text-[15px] text-dim font-medium">Create and manage your office teams and their locations</p>
                 </div>
                 <button
-                    className="flex items-center justify-center gap-2 px-6 py-2.5 bg-foreground text-background text-sm rounded-md hover:opacity-90 transition-all active:scale-95"
+                    className="flex items-center justify-center gap-2 px-6 py-2.5 bg-accent text-accent-fg text-sm rounded-md hover:bg-accent-hover transition-all active:scale-95"
                     onClick={handleAddTeam}
                 >
                     <Plus size={18} strokeWidth={3} />
@@ -149,7 +149,7 @@ const ManageTeams = () => {
                 <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-in fade-in duration-300">
                     <div className="card w-full max-w-2xl max-h-[90vh] overflow-y-auto animate-in zoom-in-95 duration-300 relative">
                         <button
-                            className="absolute right-4 top-4 p-1 rounded-full hover:bg-secondary text-secondary hover:text-foreground transition-colors"
+                            className="absolute right-4 top-4 p-1 rounded-full hover:bg-secondary text-dim hover:text-foreground transition-colors"
                             onClick={resetForm}
                         >
                             <X size={20} />
@@ -157,7 +157,7 @@ const ManageTeams = () => {
 
                         <div className="space-y-1 mb-8">
                             <h3 className="text-xl font-bold tracking-tight">{editId ? 'Edit Team' : 'Add New Team'}</h3>
-                            <p className="text-xs text-secondary italic">Set team location, radius, and working hours</p>
+                            <p className="text-xs text-dim italic">Set team location, radius, and working hours</p>
                         </div>
 
                         {error && (
@@ -170,7 +170,7 @@ const ManageTeams = () => {
                         <form onSubmit={handleSubmit} className="space-y-8">
                             <div className="space-y-4">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold tracking-widest text-muted ml-1">Team Name</label>
+                                    <label className="text-xs font-semibold tracking-wide text-muted ml-1">Team Name</label>
                                     <input
                                         className="form-input text-sm h-[42px]"
                                         placeholder="e.g. Engineering South, Global Operations"
@@ -181,7 +181,7 @@ const ManageTeams = () => {
                                 </div>
 
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold tracking-widest text-muted ml-1 flex items-center gap-2">
+                                    <label className="text-xs font-semibold tracking-wide text-muted ml-1 flex items-center gap-2">
                                         Team Location <Map size={12} />
                                     </label>
                                     <div className="rounded-xl overflow-hidden border border-border bg-secondary/20">
@@ -197,9 +197,9 @@ const ManageTeams = () => {
                                     </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold tracking-widest text-muted ml-1">Location Radius (meters)</label>
+                                        <label className="text-xs font-semibold tracking-wide text-muted ml-1">Location Radius (meters)</label>
                                         <input
                                             type="number"
                                             className="form-input text-sm h-[42px]"
@@ -210,7 +210,7 @@ const ManageTeams = () => {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold tracking-widest text-muted ml-1">Work Style</label>
+                                        <label className="text-xs font-semibold tracking-wide text-muted ml-1">Work Style</label>
                                         <select
                                             className="form-select text-sm h-[42px]"
                                             value={form.workMode}
@@ -225,7 +225,7 @@ const ManageTeams = () => {
 
                                 {(form.workMode === 'HYBRID' || form.workMode === 'WFH') && (
                                     <div className="space-y-2 animate-in slide-in-from-left-2">
-                                        <label className="text-xs font-bold tracking-widest text-muted ml-1">Max WFH Quota (Days/Month)</label>
+                                        <label className="text-xs font-semibold tracking-wide text-muted ml-1">Max WFH Quota (Days/Month)</label>
                                         <input
                                             type="number"
                                             className="form-input text-sm h-[42px]"
@@ -235,9 +235,9 @@ const ManageTeams = () => {
                                     </div>
                                 )}
 
-                                <div className="grid grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 min-[420px]:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold tracking-widest text-muted ml-1">Start Time</label>
+                                        <label className="text-xs font-semibold tracking-wide text-muted ml-1">Start Time</label>
                                         <input
                                             type="time"
                                             className="form-input text-sm h-[42px]"
@@ -247,7 +247,7 @@ const ManageTeams = () => {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-xs font-bold tracking-widest text-muted ml-1">End Time</label>
+                                        <label className="text-xs font-semibold tracking-wide text-muted ml-1">End Time</label>
                                         <input
                                             type="time"
                                             className="form-input text-sm h-[42px]"
@@ -262,14 +262,14 @@ const ManageTeams = () => {
                             <div className="flex gap-4 pt-6 border-t border-border/50">
                                 <button
                                     type="button"
-                                    className="flex-1 py-3 px-4 border border-border text-sm font-bold tracking-widest text-secondary hover:text-foreground hover:bg-secondary rounded-lg transition-all"
+                                    className="flex-1 py-3 px-4 border border-border text-sm font-semibold tracking-wide text-dim hover:text-foreground hover:bg-secondary rounded-lg transition-all"
                                     onClick={resetForm}
                                 >
                                     Abort
                                 </button>
                                 <button
                                     type="submit"
-                                    className="flex-1 py-3 px-4 bg-foreground text-background text-sm font-bold tracking-widest rounded-lg hover:opacity-90 transition-all flex items-center justify-center gap-2"
+                                    className="flex-1 py-3 px-4 bg-accent text-accent-fg text-sm font-semibold tracking-wide rounded-lg hover:bg-accent-hover transition-all flex items-center justify-center gap-2"
                                 >
                                     <Check size={18} />
                                     {editId ? 'Save Changes' : 'Add Team'}
@@ -281,7 +281,7 @@ const ManageTeams = () => {
             )}
 
             {loading ? (
-                <div className="flex flex-col items-center justify-center py-32 text-secondary gap-4">
+                <div className="flex flex-col items-center justify-center py-32 text-dim gap-4">
                     <Loader2 size={32} className="animate-spin opacity-50" />
                     <p className="text-[15px] font-medium animate-pulse">Loading teams...</p>
                 </div>
@@ -291,7 +291,7 @@ const ManageTeams = () => {
                         <Users size={40} className="text-muted" />
                     </div>
                     <h3 className="text-sm font-bold text-foreground tracking-tight">No teams found</h3>
-                    <p className="text-[15px] text-secondary mt-2 max-w-[300px] leading-relaxed">Please add a team to start tracking attendance.</p>
+                    <p className="text-[15px] text-dim mt-2 max-w-[300px] leading-relaxed">Please add a team to start tracking attendance.</p>
                 </div>
             ) : (
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -303,22 +303,24 @@ const ManageTeams = () => {
                                         <div className="w-2 h-2 rounded-full bg-foreground" />
                                         <h3 className="text-sm font-bold tracking-tight text-foreground">{t.name}</h3>
                                     </div>
-                                    <div className="flex items-center gap-1.5 text-xs text-muted font-bold tracking-widest px-2">
+                                    <div className="flex items-center gap-1.5 text-xs text-muted font-semibold tracking-wide px-2">
                                         <Building2 size={10} /> {t.workMode?.charAt(0) + t.workMode?.slice(1).toLowerCase()}
                                     </div>
                                 </div>
                                 <div className="flex gap-1.5 translate-x-1">
                                     <button
-                                        className="p-2 rounded-md hover:bg-secondary text-secondary hover:text-foreground transition-all"
+                                        className="p-2.5 rounded-lg hover:bg-secondary text-dim hover:text-foreground transition-all touch-manipulation active:scale-95"
                                         onClick={() => handleEdit(t)}
                                         title="Configure"
+                                        aria-label={`Configure ${t.name}`}
                                     >
                                         <Edit size={16} />
                                     </button>
                                     <button
-                                        className="p-2 rounded-md hover:bg-muted text-muted hover:text-foreground transition-all"
+                                        className="p-2.5 rounded-lg hover:bg-error/10 text-subtle hover:text-error transition-all touch-manipulation active:scale-95"
                                         onClick={() => handleDelete(t._id)}
                                         title="Decommission"
+                                        aria-label={`Decommission ${t.name}`}
                                     >
                                         <Trash2 size={16} />
                                     </button>
@@ -328,10 +330,10 @@ const ManageTeams = () => {
                             <div className="space-y-4">
                                 <div className="p-3 rounded-lg bg-secondary/20 border border-border/50 space-y-2">
                                     <div className="flex items-center justify-between">
-                                        <span className="text-xs font-bold text-muted tracking-widest">Location</span>
+                                        <span className="text-xs font-semibold text-muted tracking-wide">Location</span>
                                         <span className="text-xs font-black text-foreground">{t.radius}m Radius</span>
                                     </div>
-                                    <div className="flex items-center gap-2 text-xs text-secondary font-medium">
+                                    <div className="flex items-center gap-2 text-xs text-dim font-medium">
                                         <MapPin size={12} className="shrink-0" />
                                         <span className="truncate">{t.location.address || `${t.location.lat.toFixed(4)}, ${t.location.lng.toFixed(4)}`}</span>
                                     </div>
@@ -339,18 +341,18 @@ const ManageTeams = () => {
 
                                 <div className="flex items-center justify-between px-1">
                                     <div className="flex items-center gap-2 text-xs font-bold text-foreground">
-                                        <Clock size={14} className="text-secondary" />
+                                        <Clock size={14} className="text-dim" />
                                         {t.officeHours?.startTime} <span className="text-muted text-xs">–</span> {t.officeHours?.endTime}
                                     </div>
                                     <div className="flex items-center gap-1">
-                                        {t.workMode === 'HYBRID' ? <Home size={12} className="text-secondary" /> : <Building2 size={12} className="text-secondary" />}
-                                        <span className="text-xs font-bold text-muted tracking-widest">{t.workMode?.charAt(0) + t.workMode?.slice(1).toLowerCase()}</span>
+                                        {t.workMode === 'HYBRID' ? <Home size={12} className="text-dim" /> : <Building2 size={12} className="text-dim" />}
+                                        <span className="text-xs font-semibold text-muted tracking-wide">{t.workMode?.charAt(0) + t.workMode?.slice(1).toLowerCase()}</span>
                                     </div>
                                 </div>
 
                                 {t.maxWFHDaysPerMonth > 0 && (
                                     <div className="pt-3 border-t border-border/50">
-                                        <p className="text-xs text-secondary font-medium italic">
+                                        <p className="text-xs text-dim font-medium italic">
                                             Hybrid quota: {t.maxWFHDaysPerMonth} sessions / cycle
                                         </p>
                                     </div>
