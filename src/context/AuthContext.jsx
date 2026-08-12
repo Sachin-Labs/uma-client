@@ -28,14 +28,17 @@ export const AuthProvider = ({ children }) => {
         setLoading(false);
     }, []);
 
-    const login = async (email, password) => {
-        const { data } = await api.post('/auth/login', { email, password });
-        const { accessToken, refreshToken, user: userData } = data.data;
+    const setAuthData = ({ user: userData, accessToken, refreshToken }) => {
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
         localStorage.setItem('user', JSON.stringify(userData));
         setUser(userData);
         return userData;
+    };
+
+    const login = async (email, password) => {
+        const { data } = await api.post('/auth/login', { email, password });
+        return setAuthData(data.data);
     };
 
     // Step 1: Send OTP (does NOT create account)
@@ -47,12 +50,7 @@ export const AuthProvider = ({ children }) => {
     // Step 2: Verify OTP → creates account → logs in
     const verifyOtp = async (email, otp) => {
         const { data } = await api.post('/auth/verify-otp', { email, otp });
-        const { accessToken, refreshToken, user: userData } = data.data;
-        localStorage.setItem('accessToken', accessToken);
-        localStorage.setItem('refreshToken', refreshToken);
-        localStorage.setItem('user', JSON.stringify(userData));
-        setUser(userData);
-        return userData;
+        return setAuthData(data.data);
     };
 
     const logout = async () => {
@@ -65,6 +63,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
-    const value = { user, loading, login, initiateRegister, verifyOtp, logout, isAuthenticated: !!user };
+    const value = { user, loading, login, initiateRegister, verifyOtp, setAuthData, logout, isAuthenticated: !!user };
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

@@ -59,13 +59,13 @@ const Reports = () => {
             <div className="flex flex-col gap-1 border-b border-border pb-6">
                 <h1 className="text-xl font-bold tracking-tight text-foreground flex items-center gap-3">
                     Reports
-                    <LineChart className="text-secondary opacity-40 shrink-0" size={20} />
+                    <LineChart className="text-dim opacity-40 shrink-0" size={20} />
                 </h1>
-                <p className="text-[15px] text-secondary font-medium">Download and analyze attendance reports</p>
+                <p className="text-[15px] text-dim font-medium">Download and analyze attendance reports</p>
             </div>
 
             <div className="max-w-4xl mx-auto">
-                <div className="card p-8 border-border/60">
+                <div className="card p-4 sm:p-8 border-border/60">
                     <div className="flex items-center gap-4 mb-10">
                         <div className="p-3 bg-foreground text-background rounded-xl">
                             <FileSpreadsheet size={24} />
@@ -78,13 +78,13 @@ const Reports = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                         <div className="space-y-8">
-                            <h4 className="text-xs font-bold text-foreground tracking-widest flex items-center gap-2 border-b border-border pb-3">
+                            <h4 className="text-xs font-semibold text-foreground tracking-wide flex items-center gap-2 border-b border-border pb-3">
                                 <Calendar size={12} className="text-muted" />
                                 Date Range
                             </h4>
                             <div className="space-y-5">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-muted tracking-widest ml-1 uppercase">Start Date</label>
+                                    <label className="text-xs font-semibold text-muted tracking-wide ml-1 uppercase">Start Date</label>
                                     <input 
                                         type="date" 
                                         className="form-input text-sm h-[46px] font-medium" 
@@ -93,7 +93,7 @@ const Reports = () => {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-muted tracking-widest ml-1 uppercase">End Date</label>
+                                    <label className="text-xs font-semibold text-muted tracking-wide ml-1 uppercase">End Date</label>
                                     <input 
                                         type="date" 
                                         className="form-input text-sm h-[46px] font-medium" 
@@ -105,13 +105,13 @@ const Reports = () => {
                         </div>
 
                         <div className="space-y-8">
-                            <h4 className="text-xs font-bold text-foreground tracking-widest flex items-center gap-2 border-b border-border pb-3">
+                            <h4 className="text-xs font-semibold text-foreground tracking-wide flex items-center gap-2 border-b border-border pb-3">
                                 <Search size={12} className="text-muted" />
                                 Advanced Filters
                             </h4>
                             <div className="space-y-5">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-muted tracking-widest ml-1 flex items-center gap-1.5 uppercase">
+                                    <label className="text-xs font-semibold text-muted tracking-wide ml-1 flex items-center gap-1.5 uppercase">
                                         <Building size={10} /> Select Team
                                     </label>
                                     <select 
@@ -124,7 +124,7 @@ const Reports = () => {
                                     </select>
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-muted tracking-widest ml-1 flex items-center gap-1.5 uppercase">
+                                    <label className="text-xs font-semibold text-muted tracking-wide ml-1 flex items-center gap-1.5 uppercase">
                                         <Users size={10} /> Select Employee
                                     </label>
                                     <select 
@@ -142,7 +142,7 @@ const Reports = () => {
 
                     <div className="mt-16 flex flex-col gap-5">
                         <button 
-                            className="group relative w-full h-[60px] bg-foreground text-background text-xs font-bold tracking-[0.2em] uppercase rounded-xl overflow-hidden transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3" 
+                            className="group relative w-full h-[60px] bg-accent text-accent-fg text-xs font-bold tracking-[0.2em] uppercase rounded-xl overflow-hidden transition-all hover:bg-accent-hover active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3" 
                             onClick={handleDownload} 
                             disabled={downloading}
                         >
@@ -158,7 +158,7 @@ const Reports = () => {
                                 </>
                             )}
                         </button>
-                        <p className="text-[10px] text-center text-secondary font-bold tracking-widest opacity-40 uppercase">
+                        <p className="text-xs text-center text-dim font-semibold tracking-wide opacity-40 uppercase">
                             Secure data export with encrypted timestamp verification.
                         </p>
                     </div>

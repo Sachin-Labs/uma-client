@@ -128,10 +128,14 @@ const MarkAttendance = () => {
     const isWithinRadius = distance !== null && teamData ? distance <= teamData.radius : false;
     const distanceToTravel = distance !== null && teamData ? Math.max(0, distance - teamData.radius) : null;
 
-        <div className="flex flex-col items-center justify-center py-24 text-secondary gap-4">
-            <Loader2 size={32} className="animate-spin opacity-50" />
-            <p className="text-[11px] font-bold tracking-widest animate-pulse text-center">Initializing system...</p>
-        </div>
+    if (loading) {
+        return (
+            <div className="flex flex-col items-center justify-center py-24 text-dim gap-4">
+                <Loader2 size={32} className="animate-spin opacity-50" />
+                <p className="text-xs font-semibold tracking-wide animate-pulse text-center">Initializing system...</p>
+            </div>
+        );
+    }
 
     return (
         <div className="max-w-4xl mx-auto space-y-10">
@@ -140,12 +144,12 @@ const MarkAttendance = () => {
                     <h1 className="text-xl font-bold tracking-tight text-foreground">
                         Attendance
                     </h1>
-                    <p className="text-xs text-secondary font-bold tracking-widest opacity-60">
+                    <p className="text-xs text-dim font-semibold tracking-wide opacity-60">
                         {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
                     </p>
                 </div>
                 {todayRecord && !todayRecord.checkOut && (
-                    <div className="flex items-center gap-3 px-5 py-2.5 bg-foreground text-background rounded-full text-[11px] font-bold tracking-widest">
+                    <div className="flex items-center gap-3 px-5 py-2.5 bg-success/10 text-success rounded-full text-xs font-semibold tracking-wide">
                         <Activity size={12} className="animate-pulse" />
                         Currently checked in
                     </div>
@@ -162,21 +166,21 @@ const MarkAttendance = () => {
                         </div>
                     )}
                     {success && (
-                        <div className="flex items-center gap-4 p-5 bg-foreground text-background rounded-2xl text-[15px]">
+                        <div className="flex items-center gap-4 p-5 bg-success/10 text-success rounded-2xl text-[15px]">
                             <CheckCircle2 size={20} className="shrink-0" />
-                            <p className="font-bold tracking-widest">{success}</p>
+                            <p className="font-semibold tracking-wide">{success}</p>
                         </div>
                     )}
 
                     {!todayRecord ? (
-                        <div className="card space-y-10 p-8 border-border/60 relative overflow-hidden backdrop-blur-sm bg-background/50">
+                        <div className="card space-y-10 p-4 sm:p-8 border-border/60 relative overflow-hidden backdrop-blur-sm bg-background/50">
                             {/* Work Type Selection */}
                             <div className="space-y-6">
                                 <div className="space-y-1">
                                     <h3 className="text-[13px] font-bold tracking-tight text-foreground/80">Select work mode</h3>
-                                    <p className="text-xs text-secondary italic opacity-60 font-medium">Where are you working from today?</p>
+                                    <p className="text-xs text-dim italic opacity-60 font-medium">Where are you working from today?</p>
                                 </div>
-                                <div className="grid grid-cols-2 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     {[
                                         { id: 'OFFICE', label: 'In Office', icon: Building, desc: 'Location verified' },
                                         { id: 'WFH', label: 'Remote', icon: Home, desc: 'Self-declaration' },
@@ -188,7 +192,7 @@ const MarkAttendance = () => {
                                                 flex flex-col items-start gap-4 p-6 rounded-2xl border transition-all duration-300 group relative overflow-hidden
                                                 ${workType === type.id 
                                                     ? 'bg-foreground border-foreground text-background' 
-                                                    : 'bg-secondary/5 border-border hover:border-foreground/30 text-secondary'}
+                                                    : 'bg-secondary/5 border-border hover:border-foreground/30 text-dim'}
                                             `}
                                         >
                                             <div className={`p-2 rounded-xl ${workType === type.id ? 'bg-background/20 text-background' : 'bg-surface border border-line text-foreground'}`}>
@@ -196,7 +200,7 @@ const MarkAttendance = () => {
                                             </div>
                                             <div className="text-left">
                                                 <span className="text-[13px] font-bold block">{type.label}</span>
-                                                <span className={`text-[10px] font-bold tracking-widest uppercase opacity-50 ${workType === type.id ? 'text-background' : 'text-secondary'}`}>
+                                                <span className={`text-xs font-semibold tracking-wide uppercase opacity-50 ${workType === type.id ? 'text-background' : 'text-dim'}`}>
                                                     {type.desc}
                                                 </span>
                                             </div>
@@ -215,13 +219,13 @@ const MarkAttendance = () => {
                                 <div className="space-y-6 pt-6 border-t border-border/40">
                                     <div className="space-y-1">
                                         <h3 className="text-[13px] font-bold tracking-tight text-foreground/80">Location verification</h3>
-                                        <p className="text-xs text-secondary italic opacity-60 font-medium">Automatic GPS presence check</p>
+                                        <p className="text-xs text-dim italic opacity-60 font-medium">Automatic GPS presence check</p>
                                     </div>
 
                                     {locating ? (
                                         <div className="p-8 rounded-2xl bg-secondary/5 border-2 border-dashed border-border/40 flex flex-col items-center justify-center gap-4">
                                             <Loader2 className="animate-spin text-foreground opacity-40" size={24} />
-                                            <p className="text-[11px] font-bold tracking-widest text-secondary uppercase">Finding your coordinates...</p>
+                                            <p className="text-xs font-semibold tracking-wide text-dim uppercase">Finding your coordinates...</p>
                                         </div>
                                     ) : userLocation ? (
                                         <div className={`
@@ -243,7 +247,7 @@ const MarkAttendance = () => {
                                                             ? 'Location Verified' 
                                                             : `Distance: ${formatDistance(distance)}`}
                                                     </p>
-                                                    <p className="text-[11px] font-bold opacity-70 tracking-tight">
+                                                    <p className="text-xs font-semibold opacity-70 tracking-wide">
                                                         {isWithinRadius 
                                                             ? `You are ${formatDistance(distance)} from headquarters` 
                                                             : `Move ${formatDistance(distanceToTravel)} closer to designated zone`}
@@ -280,7 +284,7 @@ const MarkAttendance = () => {
                                 {userLocation && !locating && workType === 'OFFICE' && (
                                     <button 
                                         onClick={getLocation}
-                                        className="w-full text-[10px] font-bold text-secondary text-center hover:text-foreground transition-colors tracking-widest mt-4 uppercase opacity-50"
+                                        className="w-full text-xs font-semibold text-dim text-center hover:text-foreground transition-colors tracking-wide mt-4 uppercase opacity-50"
                                     >
                                         <RefreshCw size={10} className="inline mr-2" /> 
                                         Refresh location hex-code
@@ -298,7 +302,7 @@ const MarkAttendance = () => {
                                     </div>
                                     <div className="space-y-1">
                                         <h3 className="text-xl font-bold tracking-tight">System Active</h3>
-                                        <p className="text-[11px] font-bold tracking-[0.2em] uppercase opacity-60">
+                                        <p className="text-xs font-semibold tracking-wide uppercase opacity-60">
                                             Authenticated at {new Date(todayRecord.checkIn).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
                                         </p>
                                     </div>
@@ -309,16 +313,16 @@ const MarkAttendance = () => {
                             </div>
                             
                             {/* Summary Grid */}
-                            <div className="p-8 space-y-8">
+                            <div className="p-4 sm:p-8 space-y-8">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="p-5 rounded-2xl bg-secondary/5 border border-border/40">
-                                        <p className="text-[10px] text-muted font-bold tracking-widest uppercase mb-1">Status</p>
+                                        <p className="text-xs text-muted font-semibold tracking-wide uppercase mb-1">Status</p>
                                         <span className="text-[13px] font-bold text-foreground">
                                             {todayRecord.status?.toLowerCase().replace(/\b\w/g, l => l.toUpperCase())}
                                         </span>
                                     </div>
                                     <div className="p-5 rounded-2xl bg-secondary/5 border border-border/40">
-                                        <p className="text-[10px] text-muted font-bold tracking-widest uppercase mb-1">Work Mode</p>
+                                        <p className="text-xs text-muted font-semibold tracking-wide uppercase mb-1">Work Mode</p>
                                         <span className="text-[13px] font-bold text-foreground">
                                             {todayRecord.workType === 'OFFICE' ? 'In Office' : 'Remote Work'}
                                         </span>
@@ -333,7 +337,7 @@ const MarkAttendance = () => {
                                         >
                                             Terminate Session <LogOut size={16} className="group-hover:translate-x-1 transition-transform" />
                                         </button>
-                                        <p className="text-center text-[10px] font-bold text-muted uppercase tracking-widest opacity-60">
+                                        <p className="text-center text-xs font-semibold text-muted uppercase tracking-wide opacity-60">
                                             Last sync: Just now
                                         </p>
                                     </div>
@@ -341,13 +345,13 @@ const MarkAttendance = () => {
                                     <div className="space-y-8 pt-8 border-t border-line">
                                         <div className="flex items-center justify-between">
                                             <div className="space-y-1">
-                                                <p className="text-[10px] text-muted font-bold tracking-widest uppercase">Total Duration</p>
+                                                <p className="text-xs text-muted font-semibold tracking-wide uppercase">Total Duration</p>
                                                 <p className="text-2xl font-bold tracking-tight text-foreground">
                                                     {Math.floor(todayRecord.totalWorkingMinutes / 60)}h <span className="text-sm font-medium opacity-40">{todayRecord.totalWorkingMinutes % 60}m</span>
                                                 </p>
                                             </div>
                                             <div className="text-right space-y-1">
-                                                <p className="text-[10px] text-muted font-bold tracking-widest uppercase">Checkout</p>
+                                                <p className="text-xs text-muted font-semibold tracking-wide uppercase">Checkout</p>
                                                 <p className="text-sm font-bold text-foreground italic">
                                                     {new Date(todayRecord.checkOut).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false })}
                                                 </p>
@@ -364,7 +368,7 @@ const MarkAttendance = () => {
                     {workType === 'OFFICE' && (
                         <div className="card !p-0 overflow-hidden border-border/60 group bg-background/50 backdrop-blur-sm">
                             <div className="p-5 border-b border-border/40 flex items-center justify-between">
-                                <h3 className="text-[11px] font-bold tracking-widest text-secondary uppercase">Geo-spatial Matrix</h3>
+                                <h3 className="text-xs font-semibold tracking-wide text-dim uppercase">Geo-spatial Matrix</h3>
                                 <div className="flex gap-2">
                                     <div className="w-1.5 h-1.5 rounded-full bg-foreground group-hover:animate-ping" />
                                 </div>
@@ -378,13 +382,13 @@ const MarkAttendance = () => {
                                 />
                             )}
                             <div className="p-6 space-y-4 bg-secondary/5">
-                                <div className="flex items-center gap-4 text-[10px] font-bold tracking-widest uppercase">
+                                <div className="flex items-center gap-4 text-xs font-semibold tracking-wide uppercase">
                                     <div className="w-3 h-3 rounded bg-foreground shrink-0" />
                                     <span className="text-foreground">Designated HQ</span>
                                 </div>
-                                <div className="flex items-center gap-4 text-[10px] font-bold tracking-widest uppercase">
+                                <div className="flex items-center gap-4 text-xs font-semibold tracking-wide uppercase">
                                     <div className="w-3 h-3 rounded-full border-2 border-foreground shrink-0" />
-                                    <span className="text-secondary">Your Signature</span>
+                                    <span className="text-dim">Your Signature</span>
                                 </div>
                             </div>
                         </div>
@@ -394,7 +398,7 @@ const MarkAttendance = () => {
                         <div className="relative z-10 space-y-6">
                             <div className="flex items-center gap-3">
                                 <ShieldCheck size={18} className="opacity-40" />
-                                <h4 className="text-[11px] font-bold tracking-widest uppercase">Protocol Checklist</h4>
+                                <h4 className="text-xs font-semibold tracking-wide uppercase">Protocol Checklist</h4>
                             </div>
                             <ul className="space-y-4 text-xs leading-relaxed font-bold tracking-wide opacity-70">
                                 <li className="flex gap-4">
@@ -427,8 +431,8 @@ const AttendanceMap = ({ userLocation, officeLocation, radius, isWithinRadius })
     if (!API_KEY) return (
         <div className="h-[400px] bg-secondary/5 flex items-center justify-center p-10 text-center border-b border-border/40">
             <div className="space-y-3">
-                <AlertTriangle className="mx-auto text-secondary opacity-30" size={32} />
-                <p className="text-[11px] text-secondary font-bold tracking-widest leading-loose">
+                <AlertTriangle className="mx-auto text-dim opacity-30" size={32} />
+                <p className="text-xs text-dim font-semibold tracking-wide leading-loose">
                     Map unavailable <br/> Unable to load your location
                 </p>
             </div>
@@ -446,12 +450,12 @@ const AttendanceMap = ({ userLocation, officeLocation, radius, isWithinRadius })
                     gestureHandling="cooperative"
                     disableDefaultUI={true}
                     zoomControl={false}
-                    mapId={import.meta.env.VITE_GOOGLE_MAP_ID || 'uma-monochrome-matrix'}
+                    mapId={import.meta.env.VITE_GOOGLE_MAP_ID || 'sina-people-monochrome-matrix'}
                     style={{ width: '100%', height: '100%', filter: 'grayscale(1) contrast(1.1) brightness(0.95)' }}
                 >
                     {/* Office marker */}
                     <AdvancedMarker position={officeLocation}>
-                        <div className="bg-foreground text-background px-3 py-1 rounded-full text-[9px] font-black tracking-widest border border-background shadow-lg shadow-foreground/20">
+                        <div className="bg-foreground text-background px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-background shadow-lg shadow-foreground/20">
                             HQ-CORE
                         </div>
                     </AdvancedMarker>

@@ -4,7 +4,7 @@ import ThemeToggle from '../../components/ThemeToggle';
 import api from '../../api/axios';
 import { useAuth } from '../../context/AuthContext';
 
-const SetPassword = () => {
+const ResetPassword = () => {
     const { token } = useParams();
     const navigate = useNavigate();
     const { setAuthData } = useAuth();
@@ -29,14 +29,14 @@ const SetPassword = () => {
 
         setLoading(true);
         try {
-            const { data } = await api.post('/auth/set-password', { token, password });
+            const { data } = await api.post('/auth/reset-password', { token, password });
 
             // Log in the user automatically
             setAuthData(data.data);
 
             navigate('/app/dashboard');
         } catch (err) {
-            setError(err.response?.data?.message || 'Failed to set password. Link may be invalid or expired.');
+            setError(err.response?.data?.message || 'Failed to reset password. Link may be invalid or expired.');
         } finally {
             setLoading(false);
         }
@@ -53,7 +53,7 @@ const SetPassword = () => {
                         <img src="/sina-people.svg" alt="SINA People" className="w-12 h-12 rounded-2xl mb-4 hover:scale-105 transition-transform" />
                     </Link>
                     <h1 className="auth-logo text-xl font-bold tracking-tighter text-bright mb-2">SINA People</h1>
-                    <p className="auth-subtitle text-[15px] text-subtle">Welcome! Set a password for your account.</p>
+                    <p className="auth-subtitle text-[15px] text-subtle">Choose a new password for your account.</p>
                 </div>
 
                 {error && <div className="error-msg" style={{ marginBottom: '1.5rem' }}>{error}</div>}
@@ -90,7 +90,7 @@ const SetPassword = () => {
                         disabled={loading}
                         style={{ marginTop: '1rem' }}
                     >
-                        {loading ? <div className="spinner spinner-sm"></div> : 'Set Password & Login'}
+                        {loading ? <div className="spinner spinner-sm"></div> : 'Reset Password & Login'}
                     </button>
                 </form>
             </div>
@@ -98,4 +98,4 @@ const SetPassword = () => {
     );
 };
 
-export default SetPassword;
+export default ResetPassword;

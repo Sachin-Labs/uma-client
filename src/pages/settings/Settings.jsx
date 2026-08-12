@@ -82,7 +82,7 @@ const Settings = () => {
         return (
             <div className="flex flex-col items-center justify-center py-40 gap-4">
                 <Loader2 size={32} className="animate-spin text-muted" />
-                <p className="text-xs font-medium tracking-widest text-secondary">Loading protocols...</p>
+                <p className="text-xs font-medium tracking-wide text-dim">Loading protocols...</p>
             </div>
         );
     }
@@ -92,13 +92,13 @@ const Settings = () => {
             <div className="flex flex-col gap-1 border-b border-border pb-6">
                 <h1 className="text-xl font-bold tracking-tight text-foreground flex items-center gap-3">
                     Settings
-                    <ShieldCheck className="text-secondary opacity-40 shrink-0" size={20} />
+                    <ShieldCheck className="text-dim opacity-40 shrink-0" size={20} />
                 </h1>
-                <p className="text-[15px] text-secondary font-medium">Configure company settings and office hours</p>
+                <p className="text-[15px] text-dim font-medium">Configure company settings and office hours</p>
             </div>
 
             {(success || error) && (
-                <div className={`p-4 rounded-lg flex items-center gap-3 text-xs font-bold tracking-widest ${success ? 'bg-foreground text-background' : 'bg-secondary/20 text-foreground border border-border'
+                <div className={`p-4 rounded-lg flex items-center gap-3 text-xs font-semibold tracking-wide ${success ? 'bg-success/10 text-success' : 'bg-secondary/20 text-foreground border border-border'
                     }`}>
                     {success ? <Check size={16} /> : <AlertCircle size={16} />}
                     {success || error}
@@ -109,17 +109,17 @@ const Settings = () => {
                 {/* General Settings Section */}
                 <section className="space-y-4">
                     <div className="flex flex-col gap-1 px-1">
-                        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-2">
+                        <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground flex items-center gap-2">
                             <Building2 size={16} className="text-muted" />
                             General Information
                         </h2>
                         <p className="text-xs text-muted font-medium">Basic organizational details and operational hours</p>
                     </div>
                     
-                    <div className="card p-8 border-border/60">
+                    <div className="card p-4 sm:p-8 border-border/60">
                         <form onSubmit={handleSubmit} className="space-y-8">
                             <div className="space-y-2">
-                                <label className="text-[10px] font-bold text-muted tracking-widest ml-1 uppercase">Company Name</label>
+                                <label className="text-xs font-semibold text-muted tracking-wide ml-1 uppercase">Company Name</label>
                                 <input
                                     className="form-input text-sm h-[46px] font-medium"
                                     value={form.name}
@@ -130,7 +130,7 @@ const Settings = () => {
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-muted tracking-widest ml-1 flex items-center gap-1.5 uppercase">
+                                    <label className="text-xs font-semibold text-muted tracking-wide ml-1 flex items-center gap-1.5 uppercase">
                                         <Clock size={10} /> Office opens
                                     </label>
                                     <input
@@ -142,7 +142,7 @@ const Settings = () => {
                                     />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[10px] font-bold text-muted tracking-widest ml-1 flex items-center gap-1.5 uppercase">
+                                    <label className="text-xs font-semibold text-muted tracking-wide ml-1 flex items-center gap-1.5 uppercase">
                                         <Clock size={10} /> Office closes
                                     </label>
                                     <input
@@ -158,7 +158,7 @@ const Settings = () => {
                             <div className="pt-4 border-t border-border">
                                 <button
                                     type="submit"
-                                    className="px-8 h-[52px] bg-foreground text-background text-xs font-bold tracking-[0.2em] uppercase rounded-xl flex items-center justify-center gap-3 hover:opacity-90 active:scale-[0.98] transition-all"
+                                    className="px-8 h-[52px] bg-accent text-accent-fg text-xs font-bold tracking-[0.2em] uppercase rounded-xl flex items-center justify-center gap-3 hover:bg-accent-hover active:scale-[0.98] transition-all"
                                 >
                                     <Save size={18} />
                                     Update Organization
@@ -171,23 +171,23 @@ const Settings = () => {
                 {/* Office Location Section */}
                 <section className="space-y-4">
                     <div className="flex flex-col gap-1 px-1">
-                        <h2 className="text-sm font-bold uppercase tracking-widest text-foreground flex items-center gap-2">
+                        <h2 className="text-sm font-semibold uppercase tracking-wide text-foreground flex items-center gap-2">
                             <MapPin size={16} className="text-muted" />
                             Office Location
                         </h2>
                         <p className="text-xs text-muted font-medium">Manage the geographic coordinates for attendance tracking</p>
                     </div>
 
-                    <div className="card p-8 border-border/60">
+                    <div className="card p-4 sm:p-8 border-border/60">
                         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-border pb-6">
                             <div className="space-y-1">
                                 <h3 className="text-sm font-bold tracking-tight text-foreground uppercase">Geographic Anchor</h3>
-                                <p className="text-xs text-secondary font-bold tracking-widest opacity-60">
+                                <p className="text-xs text-dim font-semibold tracking-wide opacity-60">
                                     Set the primary coordinates for your main office
                                 </p>
                             </div>
                             <button
-                                className="px-8 h-[46px] bg-foreground text-background text-xs font-bold tracking-widest uppercase rounded-xl hover:opacity-90 active:scale-95 transition-all"
+                                className="px-8 h-[46px] bg-accent text-accent-fg text-xs font-semibold tracking-wide uppercase rounded-xl hover:bg-accent-hover active:scale-95 transition-all"
                                 onClick={handleLocationSave}
                             >
                                 Save Location
@@ -207,10 +207,10 @@ const Settings = () => {
                         {location.address && (
                             <div className="mt-8 p-6 rounded-xl bg-raised border border-border flex items-start gap-4">
                                 <div className="p-2 rounded-lg bg-background border border-border">
-                                    <Info size={20} className="text-secondary" />
+                                    <Info size={20} className="text-dim" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-[10px] font-bold text-muted tracking-[0.2em] uppercase">Verified Office Address</p>
+                                    <p className="text-xs font-semibold text-muted tracking-wide uppercase">Verified Office Address</p>
                                     <p className="text-sm font-bold text-foreground leading-relaxed">{location.address}</p>
                                 </div>
                             </div>

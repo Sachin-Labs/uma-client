@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import ThemeToggle from '../../components/ThemeToggle';
-import { Fingerprint } from 'lucide-react';
 
 const Register = () => {
     const [form, setForm] = useState({ name: '', email: '', password: '', organisationName: '' });
@@ -82,10 +81,10 @@ const Register = () => {
             </div>
             <div className="auth-card card max-w-lg w-full animate-fade-in">
                 <div className="auth-header mb-8 text-center flex flex-col items-center">
-                    <div className="w-12 h-12 bg-accent rounded-2xl flex items-center justify-center text-accent-fg mb-4">
-                        <Fingerprint size={28} />
-                    </div>
-                    <h1 className="auth-logo text-xl font-bold tracking-tighter text-bright mb-2">UMA</h1>
+                    <Link to="/" aria-label="SINA People home">
+                        <img src="/sina-people.svg" alt="SINA People" className="w-12 h-12 rounded-2xl mb-4 hover:scale-105 transition-transform" />
+                    </Link>
+                    <h1 className="auth-logo text-xl font-bold tracking-tighter text-bright mb-2">SINA People</h1>
                     <p className="auth-subtitle text-[15px] text-subtle">
                         {step === 1 ? 'Create your organisation' : 'Verify your email'}
                     </p>
@@ -120,7 +119,7 @@ const Register = () => {
                     </form>
                 ) : (
                     <form onSubmit={handleVerifyOtp}>
-                        <p style={{ textAlign: 'center', marginBottom: '1rem', color: 'var(--text-secondary)' }}>
+                        <p style={{ textAlign: 'center', marginBottom: '1rem', color: 'var(--text-dim)' }}>
                             We've sent a 6-digit code to <strong>{form.email}</strong>
                         </p>
                         <div className="form-group">

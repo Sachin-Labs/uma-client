@@ -7,6 +7,8 @@ import Landing from './pages/landing/Landing';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
 import SetPassword from './pages/auth/SetPassword';
+import ForgotPassword from './pages/auth/ForgotPassword';
+import ResetPassword from './pages/auth/ResetPassword';
 import Dashboard from './pages/dashboard/Dashboard';
 import MarkAttendance from './pages/attendance/MarkAttendance';
 import MyAttendance from './pages/attendance/MyAttendance';
@@ -15,6 +17,9 @@ import MyLeaves from './pages/leave/MyLeaves';
 import ManageLeaves from './pages/leave/ManageLeaves';
 import ManageTeams from './pages/teams/ManageTeams';
 import ManageUsers from './pages/users/ManageUsers';
+import ManageHolidays from './pages/holidays/ManageHolidays';
+import Holidays from './pages/holidays/Holidays';
+import AuditLogs from './pages/audit/AuditLogs';
 import Reports from './pages/reports/Reports';
 import Settings from './pages/settings/Settings';
 
@@ -34,6 +39,8 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
             <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+            <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+            <Route path="/reset-password/:token" element={<PublicRoute><ResetPassword /></PublicRoute>} />
             <Route path="/set-password/:token" element={<PublicRoute><SetPassword /></PublicRoute>} />
 
             {/* Protected with Layout */}
@@ -63,6 +70,15 @@ function App() {
                 } />
                 <Route path="teams" element={
                     <ProtectedRoute allowedRoles={['ADMIN', 'HR']}><ManageTeams /></ProtectedRoute>
+                } />
+                <Route path="holidays" element={
+                    <ProtectedRoute><Holidays /></ProtectedRoute>
+                } />
+                <Route path="holidays/manage" element={
+                    <ProtectedRoute allowedRoles={['ADMIN']}><ManageHolidays /></ProtectedRoute>
+                } />
+                <Route path="audit-logs" element={
+                    <ProtectedRoute allowedRoles={['ADMIN']}><AuditLogs /></ProtectedRoute>
                 } />
                 <Route path="users" element={
                     <ProtectedRoute allowedRoles={['ADMIN', 'HR']}><ManageUsers /></ProtectedRoute>

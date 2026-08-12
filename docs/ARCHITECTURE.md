@@ -1,6 +1,6 @@
-# UMA Client Architecture
+# SINA People Client Architecture
 
-This document provides an overview of the technical architecture of the UMA Frontend application. It is designed to help **Architects** and **Developers** understand the "Big Picture" of how the UI handles data and user interactions.
+This document provides an overview of the technical architecture of the SINA People Frontend application. It is designed to help **Architects** and **Developers** understand the "Big Picture" of how the UI handles data and user interactions.
 
 ## High-Level Flow
 

@@ -1,6 +1,6 @@
-# UMA Client Roadmap 🗺️
+# SINA People Client Roadmap 🗺️
 
-This document outlines the vision for the UMA Frontend. Whether you are a **Product Manager** looking to prioritize or a **Contributor** looking for a long-term project, this is the place to look.
+This document outlines the vision for the SINA People Frontend. Whether you are a **Product Manager** looking to prioritize or a **Contributor** looking for a long-term project, this is the place to look.
 
 ## Phase 1: Foundation (Current)
 - [x] Multi-tenant registration and onboarding.
@@ -23,4 +23,4 @@ This document outlines the vision for the UMA Frontend. Whether you are a **Prod
 
 ---
 **Product Manager's Tip:**
-Items in Phase 2 are high priority. If you want to contribute, please check the [ISSUES.md](file:///Users/sachinbalagam/Personal/UMA/client/docs/ISSUES.md) for matching tickets.
+Items in Phase 2 are high priority. If you want to contribute, please check the [ISSUES.md](file:///Users/sachinbalagam/Personal/SINA%20People/client/docs/ISSUES.md) for matching tickets.
