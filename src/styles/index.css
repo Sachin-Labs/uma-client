@@ -4,46 +4,72 @@
 
 /* ─── Light theme (default) ─── */
 :root {
+  /* Surfaces */
   --t-canvas: #ffffff;
-  --t-surface: #fafafa;
-  --t-raised: #f4f4f5;
-  --t-overlay: #e4e4e7;
-  --t-line: #e4e4e7;
-  --t-edge: #d4d4d8;
-  --t-ring: #a1a1aa;
-  --t-bright: #09090b;
-  --t-dim: #3f3f46;
-  --t-subtle: #71717a;
-  --t-muted: #a1a1aa;
-  --t-faint: #d4d4d8;
-  --t-accent: #18181b;
-  --t-accent-hover: #27272a;
-  --t-accent-fg: #fafafa;
-  --t-error: #dc2626;
+  --t-surface: #fffdfb;
+  --t-raised: #fff0e9;
+  --t-overlay: #fbe7db;
+  --t-line: #f0e5db;
+  --t-edge: #e4d6ca;
+  --t-ring: #cbb7a8;
 
-  --font-sans: "Geist", "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Text */
+  --t-bright: #221510;
+  --t-dim: #6e5f55;
+  --t-subtle: #97867a;
+  --t-muted: #b3a498;
+  --t-faint: #e0d2c7;
+
+  /* Brand (primary) */
+  --t-accent: #ff8a5b;
+  --t-accent-hover: #ed6a32;
+  --t-accent-soft: rgba(255, 138, 91, 0.12);
+  --t-accent-border: rgba(255, 138, 91, 0.25);
+  --t-accent-fg: #331505;
+
+  /* Brand (secondary) */
+  --t-secondary: #fff0e9;
+
+  --t-error: #dc2626;
+  --t-success: #10b981;
+  --t-warning: #b45309;
+
+  --font-sans: 'Figtree', system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 }
 
 /* ─── Dark theme ─── */
 .dark,
 [data-theme="dark"] {
-  --t-canvas: #09090b;
-  --t-surface: #18181b;
-  --t-raised: #27272a;
-  --t-overlay: #3f3f46;
-  --t-line: #27272a;
-  --t-edge: #3f3f46;
-  --t-ring: #52525b;
-  --t-bright: #fafafa;
-  --t-dim: #a1a1aa;
-  --t-subtle: #71717a;
-  --t-muted: #52525b;
-  --t-faint: #3f3f46;
-  --t-accent: #e4e4e7;
-  --t-accent-hover: #d4d4d8;
-  --t-accent-fg: #09090b;
+  /* Surfaces */
+  --t-canvas: #090b0a;
+  --t-surface: #0e100f;
+  --t-raised: #141713;
+  --t-overlay: #1e2420;
+  --t-line: #1b211d;
+  --t-edge: #29302b;
+  --t-ring: #3a423c;
+
+  /* Text */
+  --t-bright: #f2eee9;
+  --t-dim: #a49c93;
+  --t-subtle: #7d756d;
+  --t-muted: #575e58;
+  --t-faint: #343b36;
+
+  /* Brand (primary) */
+  --t-accent: #ff8a5b;
+  --t-accent-hover: #ffa177;
+  --t-accent-soft: rgba(255, 138, 91, 0.14);
+  --t-accent-border: rgba(255, 138, 91, 0.3);
+  --t-accent-fg: #150a04;
+
+  /* Brand (secondary) */
+  --t-secondary: #1f1610;
+
   --t-error: #f87171;
+  --t-success: #34d399;
+  --t-warning: #fbbf24;
 }
 
 @theme inline {
@@ -62,20 +88,31 @@
   --color-accent: var(--t-accent);
   --color-accent-hover: var(--t-accent-hover);
   --color-accent-fg: var(--t-accent-fg);
+  --color-accent-soft: var(--t-accent-soft);
+  --color-accent-border: var(--t-accent-border);
+  --color-secondary: var(--t-secondary);
   --color-foreground: var(--t-bright);
   --color-background: var(--t-canvas);
   --color-error: var(--t-error);
+  --color-success: var(--t-success);
+  --color-warning: var(--t-warning);
 
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-mono);
+  --font-sans: "Figtree", system-ui, -apple-system, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
   --radius-xl: 12px;
   --radius-2xl: 16px;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+  }
+
   * {
     @apply border-line;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
@@ -84,21 +121,31 @@
     font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
     transition: background-color 0.3s ease, color 0.3s ease;
+    overscroll-behavior-y: none;
+  }
+
+  [inert] {
+    pointer-events: none;
+    cursor: default;
   }
 }
 
 /* UI Components Refinement using Mogent Philosophy */
 @layer components {
   .btn {
-    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-medium transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border border-transparent outline-none active:scale-[0.98];
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-medium transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed border border-transparent outline-none active:scale-[0.98] touch-manipulation;
   }
 
   .btn-primary {
-    @apply bg-foreground text-canvas hover:opacity-90;
+    @apply bg-accent text-accent-fg hover:bg-accent-hover;
   }
 
   .btn-outline {
     @apply border-line hover:bg-surface text-dim;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-foreground hover:bg-overlay;
   }
 
   .btn-sm {
@@ -120,7 +167,7 @@
   }
 
   .badge {
-    @apply inline-flex items-center px-2 py-0.5 rounded-full border text-xs font-bold uppercase tracking-widest bg-raised text-subtle border-line/50;
+    @apply inline-flex items-center px-2 py-0.5 rounded-full border text-xs font-semibold uppercase tracking-wide bg-raised text-subtle border-line/50;
   }
 
   /* Glassmorphism utility */
@@ -132,7 +179,59 @@
     @apply min-h-screen flex items-center justify-center p-6 bg-canvas;
   }
 
+  .form-group {
+    @apply mb-5;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-dim mb-1.5;
+  }
+
+  .btn-block {
+    @apply w-full;
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-dim hover:bg-raised hover:text-bright border border-transparent;
+  }
+
+  .spinner {
+    @apply w-6 h-6 shrink-0 border-2 border-line border-t-foreground rounded-full animate-spin;
+  }
+
+  .spinner-sm {
+    @apply w-4 h-4 border-2;
+  }
+
+  .loading-screen {
+    @apply fixed inset-0 z-[1000] flex items-center justify-center bg-canvas;
+  }
+
   .error-msg {
     @apply p-3 bg-error/10 text-error rounded-xl mb-6 text-sm text-center;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.25s ease-out both;
+  }
+
+  .tappable {
+    @apply touch-manipulation active:scale-[0.98] transition-transform;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Respect users who disable motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

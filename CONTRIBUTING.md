@@ -1,6 +1,6 @@
-# Contributing to UMA Frontend
+# Contributing to SINA People Frontend
 
-We love your input! We want to make contributing to UMA as easy and transparent as possible, whether it's:
+We love your input! We want to make contributing to SINA People as easy and transparent as possible, whether it's:
 
 - Reporting a bug
 - Discussing the current state of the code
@@ -37,4 +37,4 @@ We welcome contributions in all areas:
 - **Test Your Changes**: Ensure your changes don't break existing functionality before submitting.
 - **Be Respectful**: We are a community! Please follow our code of conduct.
 
-Thank you for contributing to UMA! ❤️
+Thank you for contributing to SINA People! ❤️

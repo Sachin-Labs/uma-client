@@ -1,6 +1,6 @@
-# UMA Learning Lab: Frontend Edition 🧠
+# SINA People Learning Lab: Frontend Edition 🧠
 
-Welcome to the UMA Learning Lab! This document is designed to help **Students** and **Junior Developers** think beyond just writing code. Our goal is to understand the *why* behind the *what*.
+Welcome to the SINA People Learning Lab! This document is designed to help **Students** and **Junior Developers** think beyond just writing code. Our goal is to understand the *why* behind the *what*.
 
 ## 🌓 Theme & User Experience (UX)
 1. **The Choice**: Why did we use both `classList.add('dark')` and `setAttribute('data-theme', 'dark')` in `index.html`? *Hint: Think about library compatibility (like Tailwind).*

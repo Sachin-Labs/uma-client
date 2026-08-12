@@ -28,12 +28,12 @@ const ManageLeaves = () => {
 
     const getStatusBadge = (status) => {
         const styles = {
-            PENDING: 'bg-secondary text-foreground border border-border',
-            APPROVED: 'bg-foreground text-background',
-            REJECTED: 'bg-muted text-secondary border border-border/50'
+            PENDING: 'bg-warning/10 text-warning border border-border',
+            APPROVED: 'bg-success/10 text-success',
+            REJECTED: 'bg-error/10 text-error border border-border/50'
         };
         return (
-            <span className={`px-2 py-0.5 rounded text-[11px] font-bold tracking-widest ${styles[status] || styles.PENDING}`}>
+            <span className={`px-2.5 py-1 rounded-md text-xs font-semibold tracking-wide ${styles[status] || styles.PENDING}`}>
                 {status.charAt(0) + status.slice(1).toLowerCase()}
             </span>
         );
@@ -43,7 +43,7 @@ const ManageLeaves = () => {
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-700">
             <div className="flex flex-col gap-1">
                 <h1 className="text-xl font-bold tracking-tight text-foreground">Manage Leaves</h1>
-                <p className="text-[15px] text-secondary">Review and respond to team leave requests</p>
+                <p className="text-[15px] text-dim">Review and respond to team leave requests</p>
             </div>
 
             <div className="card flex flex-wrap items-center gap-2 p-2">
@@ -51,10 +51,10 @@ const ManageLeaves = () => {
                     <button 
                         key={s} 
                         className={`
-                            px-4 py-1.5 rounded-md text-[11px] font-bold tracking-widest transition-all
+                            px-4 py-2 min-h-[40px] rounded-md text-xs font-semibold tracking-wide transition-all touch-manipulation
                             ${filter === s 
-                                ? 'bg-foreground text-background' 
-                                : 'text-secondary hover:text-foreground hover:bg-secondary'}
+                                ? 'bg-accent text-accent-fg' 
+                                : 'text-dim hover:text-foreground hover:bg-secondary'}
                         `}
                         onClick={() => setFilter(s)}
                     >
@@ -64,7 +64,7 @@ const ManageLeaves = () => {
             </div>
 
             {loading ? (
-                <div className="flex flex-col items-center justify-center py-24 text-secondary gap-4">
+                <div className="flex flex-col items-center justify-center py-24 text-dim gap-4">
                     <Loader2 size={32} className="animate-spin opacity-50" />
                     <p className="text-[15px] font-medium animate-pulse">Loading requests...</p>
                 </div>
@@ -74,35 +74,35 @@ const ManageLeaves = () => {
                         <SearchX size={32} className="text-muted" />
                     </div>
                     <h3 className="text-sm font-bold text-foreground tracking-tight">No leave requests</h3>
-                    <p className="text-[15px] text-secondary mt-2 max-w-[300px] leading-relaxed">There are no leave requests to review at this time.</p>
+                    <p className="text-[15px] text-dim mt-2 max-w-[300px] leading-relaxed">There are no leave requests to review at this time.</p>
                 </div>
             ) : (
                 <div className="card p-0 overflow-hidden border-border/50">
                     <div className="overflow-x-auto">
-                        <table className="w-full text-left border-collapse">
+                        <table className="w-full min-w-[680px] text-left border-collapse">
                             <thead>
                                 <tr className="bg-secondary/30 border-b border-border">
-                                    <th className="px-6 py-4 text-[11px] font-bold tracking-widest text-muted">Employee</th>
-                                    <th className="px-6 py-4 text-[11px] font-bold tracking-widest text-muted">Leave Type</th>
-                                    <th className="px-6 py-4 text-[11px] font-bold tracking-widest text-muted">Dates</th>
-                                    <th className="px-6 py-4 text-[11px] font-bold tracking-widest text-muted">Reason</th>
-                                    <th className="px-6 py-4 text-[11px] font-bold tracking-widest text-muted text-center">Status</th>
-                                    <th className="px-6 py-4 text-[11px] font-bold tracking-widest text-muted text-right">Actions</th>
+                                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-subtle">Employee</th>
+                                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-subtle hidden md:table-cell">Leave Type</th>
+                                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-subtle">Dates</th>
+                                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-subtle hidden md:table-cell">Reason</th>
+                                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-subtle text-center">Status</th>
+                                    <th className="px-6 py-4 text-xs font-semibold uppercase tracking-wide text-subtle text-right">Actions</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-border/50">
                                 {leaves.map((l) => (
-                                    <tr key={l._id} className="hover:bg-glass-hover transition-colors duration-200 group">
+                                    <tr key={l._id} className="hover:bg-raised transition-colors duration-200 group">
                                         <td className="px-6 py-4 text-[15px]">
                                             <div className="flex items-center gap-2">
-                                                <div className="w-7 h-7 rounded-full bg-secondary border border-border flex items-center justify-center text-[10px] font-bold text-secondary">
+                                                <div className="w-7 h-7 rounded-full bg-secondary border border-border flex items-center justify-center text-xs font-semibold text-dim">
                                                     {l.userId?.name?.substring(0, 2) || '—'}
                                                 </div>
                                                 <span className="font-medium text-foreground">{l.userId?.name || '—'}</span>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <span className="text-[11px] font-bold text-secondary tracking-widest">{l.leaveType?.charAt(0) + l.leaveType?.slice(1).toLowerCase()}</span>
+                                        <td className="px-6 py-4 hidden md:table-cell">
+                                            <span className="text-xs font-semibold text-subtle tracking-wide">{l.leaveType?.charAt(0) + l.leaveType?.slice(1).toLowerCase()}</span>
                                         </td>
                                         <td className="px-6 py-4">
                                             <div className="flex flex-col">
@@ -110,8 +110,8 @@ const ManageLeaves = () => {
                                                 <span className="text-xs text-muted font-bold">to {l.endDate}</span>
                                             </div>
                                         </td>
-                                        <td className="px-6 py-4">
-                                            <p className="text-[15px] text-secondary max-w-[200px] truncate" title={l.reason}>
+                                        <td className="px-6 py-4 hidden md:table-cell">
+                                            <p className="text-[15px] text-dim max-w-[200px] truncate" title={l.reason}>
                                                 {l.reason}
                                             </p>
                                         </td>
@@ -122,18 +122,20 @@ const ManageLeaves = () => {
                                             {l.status === 'PENDING' ? (
                                                 <div className="flex items-center justify-end gap-2">
                                                     <button 
-                                                        className="p-2 bg-foreground text-background rounded-md hover:opacity-90 transition-all" 
+                                                        className="p-2.5 bg-accent text-accent-fg rounded-lg hover:bg-accent-hover transition-all touch-manipulation active:scale-95" 
                                                         onClick={() => handleAction(l._id, 'approve')}
                                                         title="Approve"
+                                                        aria-label="Approve leave"
                                                     >
-                                                        <Check size={14} strokeWidth={3} />
+                                                        <Check size={15} strokeWidth={3} />
                                                     </button>
                                                     <button 
-                                                        className="p-2 bg-secondary text-foreground rounded-md hover:bg-muted transition-all border border-border" 
+                                                        className="p-2.5 bg-error/10 text-error rounded-lg hover:bg-error/20 transition-all border border-error/20 touch-manipulation active:scale-95" 
                                                         onClick={() => handleAction(l._id, 'reject')}
                                                         title="Reject"
+                                                        aria-label="Reject leave"
                                                     >
-                                                        <X size={14} strokeWidth={3} />
+                                                        <X size={15} strokeWidth={3} />
                                                     </button>
                                                 </div>
                                             ) : (
